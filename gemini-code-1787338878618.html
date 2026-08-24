@@ -1,0 +1,2697 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Valentis Technologies builds AI-enabled travel software, API integrations, and white-label travel portals for B2C, B2B, B2B2B, B2B2C and B2E travel businesses."
+    />
+    <title>Valentis Technologies — Travel Portal Development Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== Reset & Base ===== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --ink-50: #f5f6f8;
+        --ink-100: #e9ebef;
+        --ink-200: #cfd3db;
+        --ink-300: #a8aebc;
+        --ink-400: #7c8395;
+        --ink-500: #5b6377;
+        --ink-600: #444b5d;
+        --ink-700: #353a49;
+        --ink-800: #222634;
+        --ink-900: #151823;
+        --ink-950: #0b0d15;
+        /* Updated Brand Colors to match #0C7BE7 */
+        --brand-300: #6ab0f1;
+        --brand-400: #3b94eb;
+        --brand-500: #0c7be7;
+        --brand-600: #0a62b8;
+        --brand-700: #084a8a;
+        --accent-500: #fb6111;
+        --max-w: 88rem;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--ink-950);
+        color: var(--ink-100);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+        line-height: 1.2;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      ul {
+        list-style: none;
+      }
+      ::selection {
+        background: rgba(12, 123, 231, 0.3);
+        color: #fff;
+      }
+
+      /* ===== Utilities ===== */
+      .container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 2rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container {
+          padding: 0 3rem;
+        }
+      }
+      .section {
+        padding: 5rem 0;
+      }
+      @media (min-width: 768px) {
+        .section {
+          padding: 7rem 0;
+        }
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.6);
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--ink-300);
+      }
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 800;
+        color: #fff;
+        margin-top: 1.25rem;
+      }
+      @media (min-width: 768px) {
+        .section-title {
+          font-size: 2.5rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .section-title {
+          font-size: 3rem;
+        }
+      }
+      .section-sub {
+        color: var(--ink-300);
+        margin-top: 1rem;
+        max-width: 42rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .text-balance {
+        text-wrap: balance;
+      }
+      .text-pretty {
+        text-wrap: pretty;
+      }
+
+      /* ===== Buttons ===== */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+        border: none;
+      }
+      .btn-primary {
+        background: var(--brand-500);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--brand-400);
+        box-shadow: 0 0 40px -8px rgba(12, 123, 231, 0.6);
+      }
+      .btn-ghost {
+        border: 1px solid var(--ink-700);
+        color: var(--ink-100);
+        background: transparent;
+      }
+      .btn-ghost:hover {
+        border-color: var(--ink-500);
+        background: var(--ink-800);
+      }
+      .btn-full {
+        width: 100%;
+      }
+
+      /* ===== Header ===== */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        transition: all 0.3s;
+        padding: 0;
+      }
+      .header.scrolled {
+        background: rgba(21, 24, 35, 0.6);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(34, 38, 52, 0.8);
+      }
+      .header-inner {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 1.25rem;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      @media (min-width: 1024px) {
+        .header-inner {
+          padding: 0 3rem;
+        }
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+      .nav-links {
+        display: none;
+        align-items: center;
+        gap: 2rem;
+      }
+      @media (min-width: 1024px) {
+        .nav-links {
+          display: flex;
+        }
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-300);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: #fff;
+      }
+      .header-actions {
+        display: none;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      @media (min-width: 1024px) {
+        .header-actions {
+          display: flex;
+        }
+      }
+      .phone-link {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-200);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .phone-link:hover {
+        color: #fff;
+      }
+      .menu-btn {
+        display: grid;
+        place-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid var(--ink-800);
+        border-radius: 0.75rem;
+        color: var(--ink-100);
+        background: transparent;
+        cursor: pointer;
+      }
+      @media (min-width: 1024px) {
+        .menu-btn {
+          display: none;
+        }
+      }
+      .mobile-nav {
+        display: none;
+        background: rgba(21, 24, 35, 0.9);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(34, 38, 52, 0.8);
+      }
+      @media (min-width: 1024px) {
+        .mobile-nav {
+          display: none !important;
+        }
+      }
+      .mobile-nav.open {
+        display: block;
+      }
+      .mobile-nav a {
+        display: block;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-200);
+        border-radius: 0.75rem;
+      }
+      .mobile-nav a:hover {
+        background: var(--ink-800);
+        color: #fff;
+      }
+      .mobile-nav .btn {
+        margin: 0.5rem 1.25rem;
+      }
+
+      /* ===== Hero ===== */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+      }
+      @media (min-width: 768px) {
+        .hero {
+          padding-top: 10rem;
+          padding-bottom: 7rem;
+        }
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+          );
+        background-size: 56px 56px;
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+        mask-image: linear-gradient(to bottom, black 60%, transparent);
+      }
+      .hero-glow {
+        position: absolute;
+        top: -10rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50rem;
+        height: 30rem;
+        border-radius: 50%;
+        background: rgba(12, 123, 231, 0.2);
+        filter: blur(140px);
+        z-index: -1;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid rgba(12, 123, 231, 0.3);
+        background: rgba(12, 123, 231, 0.1);
+        padding: 0.375rem 1rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--brand-300);
+      }
+      .hero h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: #fff;
+        margin-top: 1.5rem;
+        max-width: 48rem;
+        line-height: 1.05;
+      }
+      @media (min-width: 640px) {
+        .hero h1 {
+          font-size: 3.75rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .hero h1 {
+          font-size: 4.5rem;
+        }
+      }
+      .hero h1 .gradient {
+        display: block;
+        background: linear-gradient(
+          to right,
+          var(--brand-400),
+          var(--brand-300),
+          var(--brand-500)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        font-size: 1rem;
+        color: var(--ink-300);
+        margin: 1.5rem auto 0;
+        max-width: 42rem;
+      }
+      @media (min-width: 640px) {
+        .hero p {
+          font-size: 1.125rem;
+        }
+      }
+      .hero-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 2.25rem;
+      }
+      @media (min-width: 640px) {
+        .hero-actions {
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+      .hero-trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        font-size: 0.75rem;
+        color: var(--ink-400);
+      }
+      .stars {
+        display: flex;
+        gap: 2px;
+      }
+      .stars span {
+        color: var(--accent-500);
+        font-size: 1rem;
+      }
+
+      /* ===== Stats ===== */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        margin: 4rem auto 0;
+        max-width: 64rem;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        border: 1px solid var(--ink-800);
+        background: var(--ink-800);
+      }
+      @media (min-width: 768px) {
+        .stats-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .stat {
+        background: rgba(21, 24, 35, 0.8);
+        padding: 1.75rem 1.5rem;
+        text-align: center;
+      }
+      .stat-value {
+        font-family: "Plus Jakarta Sans";
+        font-size: 1.875rem;
+        font-weight: 800;
+        color: #fff;
+      }
+      @media (min-width: 640px) {
+        .stat-value {
+          font-size: 2.25rem;
+        }
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--ink-400);
+        margin-top: 0.375rem;
+      }
+
+      /* ===== Marquee ===== */
+      .marquee {
+        border-top: 1px solid rgba(34, 38, 52, 0.6);
+        border-bottom: 1px solid rgba(34, 38, 52, 0.6);
+        background: rgba(11, 13, 21, 0.4);
+        padding: 1.25rem 0;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 12%,
+          black 88%,
+          transparent
+        );
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 12%,
+          black 88%,
+          transparent
+        );
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 40s linear infinite;
+        gap: 2.5rem;
+      }
+      .marquee-item {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        color: var(--ink-400);
+        font-size: 0.875rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .marquee-item::after {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--ink-700);
+        margin-left: 2.5rem;
+      }
+      .marquee-item .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--brand-400);
+        flex-shrink: 0;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== Cards ===== */
+      .card {
+        border-radius: 1.5rem;
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.6);
+        padding: 1.5rem;
+        transition: all 0.3s;
+      }
+      .card:hover {
+        border-color: var(--ink-700);
+        background: rgba(21, 24, 35, 0.9);
+        box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.8);
+      }
+      .card-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        background: rgba(12, 123, 231, 0.15);
+        color: var(--brand-400);
+      }
+      .card-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .card-icon img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+      }
+
+      /* ===== Modules ===== */
+      .modules-grid {
+        display: grid;
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      @media (min-width: 1024px) {
+        .modules-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .module-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .module-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .module-head h3 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .module-head p {
+        font-size: 0.75rem;
+        color: var(--ink-400);
+      }
+      .module-list {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex: 1;
+      }
+      .module-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        border: 1px solid var(--ink-800);
+        background: rgba(11, 13, 21, 0.4);
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: border-color 0.2s;
+      }
+      .module-item:hover {
+        border-color: var(--ink-700);
+      }
+      .module-item-icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        background: var(--ink-800);
+        color: var(--brand-400);
+        margin-top: 2px;
+      }
+      .module-item-icon svg {
+        width: 1rem;
+        height: 1rem;
+      }
+      .module-item-icon img {
+        width: 1rem;
+        height: 1rem;
+        object-fit: contain;
+      }
+      .module-item-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .module-item-desc {
+        font-size: 0.75rem;
+        color: var(--ink-400);
+        margin-top: 2px;
+      }
+
+      /* ===== Solutions ===== */
+      .solutions-grid {
+        display: grid;
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      @media (min-width: 768px) {
+        .solutions-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .solution-card {
+        position: relative;
+        overflow: hidden;
+      }
+      .solution-glow {
+        position: absolute;
+        top: -4rem;
+        right: -4rem;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        background: rgba(12, 123, 231, 0.05);
+        filter: blur(40px);
+      }
+      .solution-head {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        position: relative;
+      }
+      .solution-head .card-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        background: linear-gradient(
+          135deg,
+          rgba(12, 123, 231, 0.2),
+          rgba(8, 74, 138, 0.2)
+        );
+        border: 1px solid rgba(12, 123, 231, 0.2);
+      }
+      .solution-tag {
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--brand-400);
+      }
+      .solution-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 4px;
+      }
+      .solution-card > p {
+        font-size: 0.875rem;
+        color: var(--ink-300);
+        margin-top: 1rem;
+        position: relative;
+      }
+      .solution-points {
+        margin-top: 1.25rem;
+        display: grid;
+        gap: 0.625rem;
+        position: relative;
+      }
+      .solution-points li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.625rem;
+        font-size: 0.875rem;
+        color: var(--ink-200);
+      }
+      .solution-points li::before {
+        content: "✓";
+        color: var(--brand-400);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .solution-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        margin-top: 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--brand-400);
+        position: relative;
+      }
+      .solution-link:hover {
+        color: var(--brand-300);
+      }
+
+      /* ===== Business Models ===== */
+      .bm-grid {
+        display: grid;
+        gap: 3rem;
+      }
+      @media (min-width: 1024px) {
+        .bm-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+      }
+      .bm-cards {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      @media (min-width: 640px) {
+        .bm-cards {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .bm-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.5);
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: all 0.2s;
+      }
+      .bm-card:hover {
+        border-color: rgba(12, 123, 231, 0.4);
+        background: rgba(21, 24, 35, 0.9);
+      }
+      .bm-card .card-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.75rem;
+      }
+      .bm-card .card-icon svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+      .bm-card-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .bm-card-desc {
+        font-size: 0.75rem;
+        color: var(--ink-400);
+        margin-top: 2px;
+      }
+      .bm-engines {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .bm-engine {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid var(--ink-800);
+        border-radius: 1.5rem;
+        padding: 1.25rem;
+        background: linear-gradient(
+          135deg,
+          rgba(21, 24, 35, 0.8),
+          rgba(11, 13, 21, 0.4)
+        );
+        transition: border-color 0.2s;
+      }
+      .bm-engine:hover {
+        border-color: var(--ink-700);
+      }
+      .bm-engine .card-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 1rem;
+        border: 1px solid rgba(12, 123, 231, 0.2);
+      }
+      .bm-engine .card-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .bm-engine .card-icon img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+      }
+      .bm-engine-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .bm-engine-desc {
+        font-size: 0.875rem;
+        color: var(--ink-400);
+        margin-top: 4px;
+      }
+
+      /* ===== Why Choose Us ===== */
+      .why-grid {
+        display: grid;
+        gap: 1.25rem;
+        margin-top: 3.5rem;
+      }
+      @media (min-width: 640px) {
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        .why-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .why-card .card-icon {
+        transition: transform 0.3s;
+      }
+      .why-card:hover .card-icon {
+        transform: scale(1.1);
+      }
+      .why-card h3 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1.25rem;
+      }
+      .why-card p {
+        font-size: 0.875rem;
+        color: var(--ink-400);
+        margin-top: 0.5rem;
+      }
+
+      /* ===== Process ===== */
+      .process-line {
+        position: absolute;
+        top: 1.75rem;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--ink-700),
+          transparent
+        );
+        display: none;
+      }
+      @media (min-width: 1024px) {
+        .process-line {
+          display: block;
+        }
+      }
+      .process-grid {
+        display: grid;
+        gap: 2rem;
+        margin-top: 4rem;
+        position: relative;
+      }
+      @media (min-width: 1024px) {
+        .process-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .process-step {
+        text-align: center;
+        position: relative;
+      }
+      .process-icon {
+        position: relative;
+        z-index: 1;
+        width: 3.5rem;
+        height: 3.5rem;
+        margin: 0 auto;
+        border-radius: 1rem;
+        border: 1px solid rgba(12, 123, 231, 0.3);
+        background: var(--ink-900);
+        display: grid;
+        place-items: center;
+        color: var(--brand-400);
+      }
+      .process-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .process-num {
+        position: absolute;
+        top: -0.5rem;
+        right: -0.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: var(--brand-500);
+        color: var(--ink-950);
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+      }
+      .process-step h3 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 1.25rem;
+      }
+      .process-step p {
+        font-size: 0.875rem;
+        color: var(--ink-400);
+        margin-top: 0.5rem;
+      }
+
+      /* ===== Testimonials ===== */
+      .test-grid {
+        display: grid;
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      @media (min-width: 1024px) {
+        .test-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .test-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .test-quote {
+        font-size: 2rem;
+        color: rgba(12, 123, 231, 0.4);
+        line-height: 1;
+      }
+      .test-card blockquote {
+        font-size: 0.875rem;
+        color: var(--ink-200);
+        margin-top: 1rem;
+        flex: 1;
+        line-height: 1.6;
+      }
+      .test-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--ink-800);
+      }
+      .test-avatar {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+        display: grid;
+        place-items: center;
+        font-family: "Plus Jakarta Sans";
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--ink-950);
+      }
+      .test-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .test-role {
+        font-size: 0.75rem;
+        color: var(--ink-400);
+      }
+
+      /* ===== FAQ ===== */
+      .faq-grid {
+        display: grid;
+        gap: 3rem;
+      }
+      @media (min-width: 1024px) {
+        .faq-grid {
+          grid-template-columns: 0.8fr 1.2fr;
+          gap: 4rem;
+        }
+      }
+      .faq-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .faq-item {
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.5);
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.25rem;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        font-family: inherit;
+      }
+      @media (min-width: 640px) {
+        .faq-q {
+          font-size: 1rem;
+          padding: 1.25rem;
+        }
+      }
+      .faq-q:hover {
+        background: rgba(21, 24, 35, 0.9);
+      }
+      .faq-toggle {
+        color: var(--brand-400);
+        font-size: 1.25rem;
+        transition: transform 0.3s;
+        flex-shrink: 0;
+      }
+      .faq-item.open .faq-toggle {
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s,
+          padding 0.3s;
+        padding: 0 1.25rem;
+      }
+      .faq-item.open .faq-a {
+        max-height: 200px;
+        padding: 0 1.25rem 1.25rem;
+      }
+      .faq-a p {
+        font-size: 0.875rem;
+        color: var(--ink-300);
+      }
+
+      /* ===== CTA ===== */
+      .cta-wrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: 2.5rem;
+        border: 1px solid rgba(12, 123, 231, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(8, 74, 138, 0.4),
+          var(--ink-900),
+          var(--ink-950)
+        );
+        padding: 2rem;
+      }
+      @media (min-width: 768px) {
+        .cta-wrap {
+          padding: 3.5rem;
+        }
+      }
+      .cta-glow1 {
+        position: absolute;
+        top: -5rem;
+        right: -5rem;
+        width: 16rem;
+        height: 16rem;
+        border-radius: 50%;
+        background: rgba(12, 123, 231, 0.2);
+        filter: blur(100px);
+      }
+      .cta-glow2 {
+        position: absolute;
+        bottom: -5rem;
+        left: -5rem;
+        width: 16rem;
+        height: 16rem;
+        border-radius: 50%;
+        background: rgba(251, 97, 17, 0.1);
+        filter: blur(100px);
+      }
+      .cta-inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+      @media (min-width: 1024px) {
+        .cta-inner {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+      .cta-inner h2 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #fff;
+      }
+      @media (min-width: 768px) {
+        .cta-inner h2 {
+          font-size: 2.25rem;
+        }
+      }
+      .cta-inner p {
+        color: var(--ink-300);
+        margin-top: 0.75rem;
+        max-width: 36rem;
+        font-size: 0.875rem;
+      }
+      .cta-btn {
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      /* ===== Contact ===== */
+      .contact-grid {
+        display: grid;
+        gap: 3rem;
+      }
+      @media (min-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+      }
+      .contact-info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .contact-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.5);
+        border-radius: 1rem;
+        padding: 1rem;
+        transition: border-color 0.2s;
+      }
+      .contact-info:hover {
+        border-color: var(--ink-700);
+      }
+      .contact-info .card-icon {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 0.75rem;
+      }
+      .contact-info .card-icon svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+      .contact-info-label {
+        font-size: 0.75rem;
+        color: var(--ink-400);
+      }
+      .contact-info-value {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .contact-demo {
+        margin-top: 2rem;
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.5);
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+      }
+      .contact-demo-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .contact-demo p {
+        font-size: 0.875rem;
+        color: var(--ink-400);
+        margin-top: 0.375rem;
+      }
+
+      /* ===== Form ===== */
+      .form-card {
+        border: 1px solid var(--ink-800);
+        background: rgba(21, 24, 35, 0.7);
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+      }
+      @media (min-width: 640px) {
+        .form-card {
+          padding: 2rem;
+        }
+      }
+      .form-row {
+        display: grid;
+        gap: 1rem;
+      }
+      @media (min-width: 640px) {
+        .form-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        margin-bottom: 1rem;
+      }
+      .form-field label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--ink-300);
+      }
+      .form-field input,
+      .form-field select,
+      .form-field textarea {
+        width: 100%;
+        border: 1px solid var(--ink-700);
+        background: rgba(21, 24, 35, 0.8);
+        border-radius: 1rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        color: var(--ink-100);
+        font-family: inherit;
+        transition: border-color 0.2s;
+      }
+      .form-field input::placeholder,
+      .form-field textarea::placeholder {
+        color: var(--ink-400);
+      }
+      .form-field input:focus,
+      .form-field select:focus,
+      .form-field textarea:focus {
+        outline: none;
+        border-color: var(--brand-500);
+        box-shadow: 0 0 0 3px rgba(12, 123, 231, 0.15);
+      }
+      .form-field textarea {
+        resize: none;
+      }
+      .form-note {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--ink-500);
+        margin-top: 1rem;
+      }
+
+      /* ===== Footer ===== */
+      .footer {
+        border-top: 1px solid var(--ink-800);
+        background: var(--ink-950);
+        padding: 3.5rem 0 2rem;
+      }
+      .footer-grid {
+        display: grid;
+        gap: 2.5rem;
+      }
+      @media (min-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        }
+      }
+      .footer-desc {
+        font-size: 0.875rem;
+        color: var(--ink-400);
+        margin-top: 1rem;
+        max-width: 20rem;
+      }
+      .footer-contact {
+        margin-top: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--ink-400);
+      }
+      .footer-contact a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.2s;
+      }
+      .footer-contact a:hover {
+        color: #fff;
+      }
+      .footer-contact svg {
+        width: 1rem;
+        height: 1rem;
+        color: var(--brand-400);
+      }
+      .footer-col h4 {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-300);
+      }
+      .footer-col ul {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .footer-col a {
+        font-size: 0.875rem;
+        color: var(--ink-400);
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: #fff;
+      }
+      .footer-bottom {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--ink-800);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.75rem;
+        color: var(--ink-500);
+      }
+      @media (min-width: 640px) {
+        .footer-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+      .footer-bottom a {
+        transition: color 0.2s;
+      }
+      .footer-bottom a:hover {
+        color: #fff;
+      }
+
+      /* ===== SVG icon helper ===== */
+      .icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header class="header" id="header">
+      <div class="header-inner">
+        <a href="#home" class="logo">
+          <img
+            src="Group 329.png"
+            alt="Valentis Technologies"
+            style="height: 2.75rem; width: auto"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="#solutions">Solutions</a>
+          <a href="#modules">Modules</a>
+          <a href="#why">Why Valentis</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a href="tel:+919900096558" class="phone-link">
+            <svg class="icon" style="width: 1rem; height: 1rem">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+            +91-9900096558
+          </a>
+          <a href="#contact" class="btn btn-primary">Get a Demo</a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+          <svg class="icon" id="menuIcon">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <a href="#solutions">Solutions</a>
+        <a href="#modules">Modules</a>
+        <a href="#why">Why Valentis</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn btn-primary">Get a Demo</a>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-glow"></div>
+      <div class="container">
+        <div class="mx-auto" style="max-width: 48rem; text-align: center">
+          <div class="hero-badge">
+            <svg class="icon" style="width: 0.875rem; height: 0.875rem">
+              <path
+                d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"
+              />
+            </svg>
+            AI-enabled travel software — one-month free trial
+          </div>
+          <h1 class="text-balance">
+            Welcome to
+            <span class="gradient">Valentis Technologies</span>
+          </h1>
+          <p class="text-pretty">
+            Valentis Technologies delivers scalable, AI-integrated technology
+            solutions tailored to industries like e-commerce, healthcare, and
+            travel. We specialize in modernizing legacy systems, building
+            bespoke platforms, and developing comprehensive travel portals, API
+            integrations, and extranets designed to empower businesses across
+            B2C, B2B, B2B2B, B2B2C, and Corporate models.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Book a live demo →</a>
+            <a href="#solutions" class="btn btn-ghost">▶ Contact us</a>
+          </div>
+          <div class="hero-trust">
+            <div class="stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span
+              ><span>★</span>
+            </div>
+            <span>Trusted by 100+ travel businesses worldwide</span>
+          </div>
+        </div>
+
+        <!-- <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-value">10+</div>
+            <div class="stat-label">Years in travel technology</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Travel businesses powered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">30+</div>
+            <div class="stat-label">Supplier APIs integrated</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">24×7</div>
+            <div class="stat-label">Technical support</div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- ===== Marquee ===== -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="dot"></span> Flight API</div>
+        <div class="marquee-item"><span class="dot"></span> Hotel API</div>
+        <div class="marquee-item"><span class="dot"></span> Bus / Car API</div>
+        <div class="marquee-item">
+          <span class="dot"></span> White-Label Portal
+        </div>
+        <div class="marquee-item">
+          <span class="dot"></span> Extranet System
+        </div>
+        <div class="marquee-item">
+          <span class="dot"></span> B2C · B2B · B2B2B · B2B2C · B2E
+        </div>
+        <div class="marquee-item">
+          <span class="dot"></span> Secure by Design
+        </div>
+        <div class="marquee-item"><span class="dot"></span> AI-Enabled</div>
+        <div class="marquee-item"><span class="dot"></span> Flight API</div>
+        <div class="marquee-item"><span class="dot"></span> Hotel API</div>
+        <div class="marquee-item"><span class="dot"></span> Bus / Car API</div>
+        <div class="marquee-item">
+          <span class="dot"></span> White-Label Portal
+        </div>
+        <div class="marquee-item">
+          <span class="dot"></span> Extranet System
+        </div>
+        <div class="marquee-item">
+          <span class="dot"></span> B2C · B2B · B2B2B · B2B2C · B2E
+        </div>
+        <div class="marquee-item">
+          <span class="dot"></span> Secure by Design
+        </div>
+        <div class="marquee-item"><span class="dot"></span> AI-Enabled</div>
+      </div>
+    </div>
+
+    <!-- ===== Modules ===== -->
+    <section class="section" id="modules">
+      <div class="container">
+        <div class="mx-auto text-center" style="max-width: 42rem">
+          <span class="eyebrow">Core modules</span>
+          <h2 class="section-title text-balance">
+            Everything your travel business needs, connected
+          </h2>
+          <p class="section-sub mx-auto text-pretty">
+            Three pillars power every Valentis portal — supplier APIs,
+            ready-made modules and your own extranet inventory.
+          </p>
+        </div>
+        <div class="modules-grid">
+          <!-- Module 1 -->
+          <div class="card module-card">
+            <div class="module-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" /></svg
+              ></span>
+              <div>
+                <h3>Travel API Integration</h3>
+                <p>Connect Global supply</p>
+              </div>
+            </div>
+            <ul class="module-list">
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><img src="flight-icon.png" alt="Flight" class="icon"
+                /></span>
+                <div>
+                  <div class="module-item-title">Flight API</div>
+                  <div class="module-item-desc">Airlines,GDS,LLC,and NDC</div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">Hotel API</div>
+                  <div class="module-item-desc">
+                    Hotelbeds,Webbeds,Ratehawk,Rezlive & More with live rates,
+                    room mapping and instant confirmation.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <path
+                      d="M8 6v6M15 6v6M2 12h19.9M18 18h3s.5-1.7.8-3M2.5 13.5L8 18l5-5.5"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">Car Rental / Transfers</div>
+                  <div class="module-item-desc">iway,Greenmotion,We</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- Module 2 -->
+          <div class="card module-card">
+            <div class="module-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" /></svg
+              ></span>
+              <div>
+                <h3>Business Models</h3>
+                <p>Get your readymade travel portal</p>
+              </div>
+            </div>
+            <ul class="module-list">
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <path d="M3 9l1-5h16l1 5M5 9v11h14V9M9 22V12h6v10" /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">B2C Module</div>
+                  <div class="module-item-desc">
+                    Sell directly to travellers with a modern, mobile-first
+                    booking storefront.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path
+                      d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">B2B Module</div>
+                  <div class="module-item-desc">
+                    Empower agents with sub-agent logins, markups and credit
+                    limits.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">B2B2B Module</div>
+                  <div class="module-item-desc">
+                    Distribute through multi-tier agent networks with granular
+                    controls.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">Corporate Module</div>
+                  <div class="module-item-desc">
+                    Hybrid flows that blend agent distribution with
+                    direct-to-customer sales.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">B2E Module</div>
+                  <div class="module-item-desc">
+                    Employee travel desks with policy controls and approval
+                    workflows.
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- Module 3 -->
+          <div class="card module-card">
+            <div class="module-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg
+              ></span>
+              <div>
+                <h3>Extranet & CMS</h3>
+                <p>Own Your Inventory</p>
+              </div>
+            </div>
+            <ul class="module-list">
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><img src="flight-icon.png" alt="Flight" class="icon"
+                /></span>
+                <div>
+                  <div class="module-item-title">Flight CMS</div>
+                  <div class="module-item-desc">
+                    Load your own contracted fares and sell them across every
+                    channel.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">Hotel CMS</div>
+                  <div class="module-item-desc">
+                    Manage your hotel inventory, rates and allotments in real
+                    time.
+                  </div>
+                </div>
+              </li>
+              <li class="module-item">
+                <span class="module-item-icon"
+                  ><svg class="icon">
+                    <path
+                      d="M8 6v6M15 6v6M2 12h19.9M18 18h3s.5-1.7.8-3M2.5 13.5L8 18l5-5.5"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="module-item-title">Tour&Package CMS</div>
+                  <div class="module-item-desc">
+                    Create Custom Holiday Packages, Pricing and Voucher
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Solutions ===== -->
+    <section
+      class="section"
+      id="solutions"
+      style="background: rgba(11, 13, 21, 0.3)"
+    >
+      <div class="container">
+        <div class="mx-auto text-center" style="max-width: 42rem">
+          <span class="eyebrow">Solutions</span>
+          <h2 class="section-title text-balance">
+            Solutions built for every travel business model
+          </h2>
+          <p class="section-sub mx-auto text-pretty">
+            Launch, automate and scale your travel business with connected
+            booking engines, supplier APIs and powerful extranet systems.
+          </p>
+        </div>
+        <div class="solutions-grid">
+          <article class="card solution-card">
+            <div class="solution-glow"></div>
+            <div class="solution-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <circle cx="6" cy="6" r="3" />
+                  <circle cx="6" cy="18" r="3" />
+                  <line x1="20" y1="4" x2="8.12" y2="15.88" />
+                  <line x1="14.47" y1="14.48" x2="20" y2="20" />
+                  <line x1="8.12" y1="8.12" x2="12" y2="12" /></svg
+              ></span>
+              <div>
+                <div class="solution-tag">
+                  Customize your portal in your way
+                </div>
+                <h3>Travel API Integration</h3>
+              </div>
+            </div>
+            <p>
+              Connect your travel business to the world. We integrate flight,
+              hotel and bus APIs from leading suppliers so your customers
+              search, book and pay in one place.
+            </p>
+            <ul class="solution-points">
+              <li>Single unified search across multiple suppliers</li>
+              <li>Live availability and fare caching for fast results</li>
+              <li>Flexible markup and pricing rules per channel</li>
+              <li>Payment gateway and fraud screening built in</li>
+            </ul>
+            <a href="#contact" class="solution-link">Learn more ↗</a>
+          </article>
+          <article class="card solution-card">
+            <div class="solution-glow"></div>
+            <div class="solution-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                  <polyline points="2 17 12 22 22 17" />
+                  <polyline points="2 12 12 17 22 12" /></svg
+              ></span>
+              <div>
+                <div class="solution-tag">
+                  Get your readymade portal in one day
+                </div>
+                <h3>Business Models</h3>
+              </div>
+            </div>
+            <p>
+              Launch under your own brand with ready-made B2C, B2B, B2B2B, B2B2C
+              and B2E modules. Fully hosted, maintained and updated by our team.
+            </p>
+            <ul class="solution-points">
+              <li>Your branding, domain and content</li>
+              <li>Pre-built modules for every business model</li>
+              <li>One-day deployment with full onboarding</li>
+              <li>Ongoing upgrades and technical support</li>
+            </ul>
+            <a href="#contact" class="solution-link">Learn more ↗</a>
+          </article>
+          <article class="card solution-card">
+            <div class="solution-glow"></div>
+            <div class="solution-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg
+              ></span>
+              <div>
+                <div class="solution-tag">Your fares on your portal</div>
+                <h3>Extranet Booking System</h3>
+              </div>
+            </div>
+            <p>
+              Bring your own contracted inventory online. Our extranet lets you
+              load and manage your own flight, hotel and bus fares and sell them
+              across all channels.
+            </p>
+            <ul class="solution-points">
+              <li>Contracted fare and rate management</li>
+              <li>Inventory, allotment and season controls</li>
+              <li>Channel-level markups and restrictions</li>
+              <li>Real-time dashboards and reporting</li>
+            </ul>
+            <a href="#contact" class="solution-link">Learn more ↗</a>
+          </article>
+          <article class="card solution-card">
+            <div class="solution-glow"></div>
+            <div class="solution-head">
+              <span class="card-icon"
+                ><svg class="icon">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" /></svg
+              ></span>
+              <div>
+                <div class="solution-tag">Built around your workflow</div>
+                <h3>Custom Software Development</h3>
+              </div>
+            </div>
+            <p>
+              From CRMs to booking engines, we build travel-specific software
+              tailored to your operations and designed to scale with your
+              business.
+            </p>
+            <ul class="solution-points">
+              <li>Product discovery and technical architecture</li>
+              <li>Dedicated engineering team</li>
+              <li>API and third-party integrations</li>
+              <li>Continuous delivery and maintenance</li>
+            </ul>
+            <a href="#contact" class="solution-link">Learn more ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Business Models & Booking Engines ===== -->
+    <!-- <section class="section">
+      <div class="container">
+        <div class="bm-grid">
+          <div>
+            <span class="eyebrow">Business models</span>
+            <h2 class="section-title text-balance">
+              One platform, every travel model
+            </h2>
+            <p class="section-sub text-pretty">
+              Whether you sell directly to travellers, through agents, or to
+              corporate teams, Valentis has a module built for your model.
+            </p>
+            <div class="bm-cards">
+              <div class="bm-card">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <path d="M3 9l1-5h16l1 5M5 9v11h14V9M9 22V12h6v10" /></svg
+                ></span>
+                <div>
+                  <div class="bm-card-title">B2C Travel Portal</div>
+                  <div class="bm-card-desc">
+                    Direct-to-traveller storefronts with modern search and
+                    checkout.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-card">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path
+                      d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="bm-card-title">B2B Agent Portal</div>
+                  <div class="bm-card-desc">
+                    Agent logins, markups, credit limits and sub-agent networks.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-card">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                      d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="bm-card-title">B2B2B Distribution</div>
+                  <div class="bm-card-desc">
+                    Multi-tier distribution with granular role and rate
+                    controls.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-card">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" /></svg
+                ></span>
+                <div>
+                  <div class="bm-card-title">B2B2C Hybrid</div>
+                  <div class="bm-card-desc">
+                    Blend agent distribution with direct customer sales.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-card">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <rect x="2" y="7" width="20" height="14" rx="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg
+                ></span>
+                <div>
+                  <div class="bm-card-title">B2E Employee Travel</div>
+                  <div class="bm-card-desc">
+                    Corporate travel desks with policy and approval workflows.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-card">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                      d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="bm-card-title">Custom Modules</div>
+                  <div class="bm-card-desc">
+                    Tailored modules for your unique business requirements.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">Booking engines</span>
+            <h2 class="section-title text-balance">
+              Booking engines that convert
+            </h2>
+            <p class="section-sub text-pretty">
+              Fast, modern search and checkout experiences for flights, hotels
+              and ground transport — built to maximise conversion.
+            </p>
+            <div class="bm-engines">
+              <div class="bm-engine">
+                <span class="card-icon"
+                  ><img src="flight-icon.png" alt="Flight" class="icon"
+                /></span>
+                <div>
+                  <div class="bm-engine-title">Flight Booking Engine</div>
+                  <div class="bm-engine-desc">
+                    GDS and consolidator connectivity with fare caching and
+                    revalidation.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-engine">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" /></svg
+                ></span>
+                <div>
+                  <div class="bm-engine-title">Hotel Booking Engine</div>
+                  <div class="bm-engine-desc">
+                    Live rates, room mapping and instant confirmation across
+                    suppliers.
+                  </div>
+                </div>
+              </div>
+              <div class="bm-engine">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <path
+                      d="M8 6v6M15 6v6M2 12h19.9M18 18h3s.5-1.7.8-3M2.5 13.5L8 18l5-5.5"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="bm-engine-title">Bus Booking Engine</div>
+                  <div class="bm-engine-desc">
+                    Route, seat and operator inventory with live availability.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ===== Why Choose Us ===== -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="mx-auto text-center" style="max-width: 42rem">
+          <span class="eyebrow">Why Valentis</span>
+          <h2 class="section-title text-balance">
+            Built by people who know travel, inside out
+          </h2>
+          <p class="section-sub mx-auto text-pretty">
+            Engitech is the trusted partner for global enterprises, SMEs, and
+            technology challengers. We elevate your business value through
+            custom software, product design, QA, and consultancy services.
+          </p>
+        </div>
+        <div class="why-grid">
+          <div class="card why-card">
+            <span class="card-icon"
+              ><svg class="icon">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                /></svg
+            ></span>
+            <h3>25+ Years in Travel Tech</h3>
+            <p>
+              A decade of building software exclusively for the travel industry.
+            </p>
+          </div>
+          <div class="card why-card">
+            <span class="card-icon"
+              ><svg class="icon">
+                <path
+                  d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.08-2.91a2.18 2.18 0 0 0-2.92-.09z"
+                />
+                <path
+                  d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a13.09 13.09 0 0 1-3 2z"
+                />
+                <path
+                  d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"
+                /></svg
+            ></span>
+            <h3>Proven Expertise</h3>
+            <p>
+              Leaders in travel technology, ERP systems, and healthcare IT with
+              a proven track record of success.
+            </p>
+          </div>
+          <div class="card why-card">
+            <span class="card-icon"
+              ><svg class="icon">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                <path
+                  d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+                /></svg
+            ></span>
+            <h3>Tailored Solutions</h3>
+            <p>
+              Every project is designed to address your unique operational
+              challenges..
+            </p>
+          </div>
+          <div class="card why-card">
+            <span class="card-icon"
+              ><svg class="icon">
+                <path d="M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z" />
+                <path d="M12 12l4-2" />
+                <path d="M12 6v6l4 2" /></svg
+            ></span>
+            <h3>Client-Centric Approach</h3>
+            <p>
+              We Prioritise long-term partnerships and focus on your growth..
+            </p>
+          </div>
+          <div class="card why-card">
+            <span class="card-icon"
+              ><svg class="icon">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg
+            ></span>
+            <h3>Secure by Design</h3>
+            <p>PCI-aware payments, row-level data security and audit trails.</p>
+          </div>
+          <div class="card why-card">
+            <span class="card-icon"
+              ><svg class="icon">
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <path
+                  d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"
+                /></svg
+            ></span>
+            <h3>AI-Enabled</h3>
+            <p>Smart search, pricing and recommendations powered by AI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Process ===== -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="mx-auto text-center" style="max-width: 42rem">
+          <span class="eyebrow">How it works</span>
+          <h2 class="section-title text-balance">
+            From demo to launch in four steps
+          </h2>
+          <p class="section-sub mx-auto text-pretty">
+            We've streamlined the path from first conversation to a live,
+            revenue-generating travel portal.
+          </p>
+        </div>
+        <div class="process-grid">
+          <div class="process-line"></div>
+          <div class="process-step">
+            <div class="process-icon">
+              <svg class="icon">
+                <path
+                  d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"
+                /></svg
+              ><span class="process-num">1</span>
+            </div>
+            <h3>Discovery & Demo</h3>
+            <p>We understand your business and show you the platform live.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-icon">
+              <svg class="icon">
+                <path d="M3 3v18h18" />
+                <path d="M7 16l4-8 4 6 5-10" /></svg
+              ><span class="process-num">2</span>
+            </div>
+            <h3>Configuration</h3>
+            <p>We tailor modules, branding and supplier APIs to your needs.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-icon">
+              <svg class="icon">
+                <path
+                  d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.08-2.91a2.18 2.18 0 0 0-2.92-.09z"
+                />
+                <path
+                  d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a13.09 13.09 0 0 1-3 2z"
+                /></svg
+              ><span class="process-num">3</span>
+            </div>
+            <h3>Go Live</h3>
+            <p>Your portal is deployed, tested, and launched rapidly..</p>
+          </div>
+          <div class="process-step">
+            <div class="process-icon">
+              <svg class="icon">
+                <path d="M23 4v6h-6M1 20v-6h6" />
+                <path
+                  d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                /></svg
+              ><span class="process-num">4</span>
+            </div>
+            <h3>Grow & Support</h3>
+            <p>
+              Ongoing updates, monitoring and a team that picks up the phone.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonials ===== -->
+    <!-- <section class="section">
+      <div class="container">
+        <div class="mx-auto text-center" style="max-width: 42rem">
+          <span class="eyebrow">Customer stories</span>
+          <h2 class="section-title text-balance">
+            Travel businesses grow with Valentis
+          </h2>
+        </div>
+        <div class="test-grid">
+          <figure class="card test-card">
+            <div class="test-quote">"</div>
+            <blockquote>
+              Valentis delivered our B2B portal in a single day. Our agents were
+              booking flights the next morning. The platform just works."
+            </blockquote>
+            <figcaption class="test-author">
+              <span class="test-avatar">AS</span>
+              <div>
+                <div class="test-name">Amit Sharma</div>
+                <div class="test-role">Managing Director, Skylink Travels</div>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="card test-card">
+            <div class="test-quote">"</div>
+            <blockquote>
+              The hotel extranet changed how we sell our contracted rates. We
+              control inventory in real time and our margins have never been
+              better.
+            </blockquote>
+            <figcaption class="test-author">
+              <span class="test-avatar">PN</span>
+              <div>
+                <div class="test-name">Priya Nair</div>
+                <div class="test-role">Head of Product, Holidays Direct</div>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="card test-card">
+            <div class="test-quote">"</div>
+            <blockquote>
+              Their team understands travel. They integrated three GDS feeds and
+              our bus inventory without us writing a single line of code.
+            </blockquote>
+            <figcaption class="test-author">
+              <span class="test-avatar">RV</span>
+              <div>
+                <div class="test-name">Rohit Verma</div>
+                <div class="test-role">Founder, Trip Junction</div>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ===== FAQ ===== -->
+    <section class="section">
+      <div class="container">
+        <div class="faq-grid">
+          <div>
+            <span class="eyebrow">FAQ</span>
+            <h2 class="section-title text-balance">Questions, answered</h2>
+            <p class="section-sub text-pretty">
+              Everything you need to know about launching and running a travel
+              portal with Valentis. Can't find your answer? Our team is one call
+              away.
+            </p>
+            <a href="#contact" class="btn btn-ghost" style="margin-top: 1.5rem"
+              >Talk to an expert</a
+            >
+          </div>
+          <div class="faq-list">
+            <div class="faq-item open">
+              <button class="faq-q">
+                How quickly can I launch a white-label travel portal?
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-a">
+                <p>
+                  Most white-label portals go live within one business day.
+                  After a short discovery call, we configure your branding,
+                  modules and supplier APIs, then deploy and onboard your team.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q">
+                Which supplier APIs do you support?
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-a">
+                <p>
+                  We integrate with major GDS and consolidator feeds for
+                  flights, 500k+ hotels through leading aggregators, and
+                  regional bus and car operators. If you have a specific
+                  supplier, ask us — we add new APIs regularly.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q">
+                Can I sell my own contracted fares and rates?
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-a">
+                <p>
+                  Yes. Our extranet system lets you load and manage your own
+                  flight, hotel and bus inventory with full control over
+                  pricing, allotments and season rules — and sell it across
+                  every channel.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q">
+                Do you support B2B, B2C and corporate travel models?
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-a">
+                <p>
+                  All of them. We provide dedicated B2C, B2B, B2B2B, B2B2C and
+                  B2E modules, so you can serve travellers, agents, sub-agents
+                  and employees from a single platform.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q">
+                Is my data secure? <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-a">
+                <p>
+                  Security is built in from the ground up. We use row-level
+                  database security, PCI-aware payment flows, audit trails and
+                  cloud infrastructure designed for peak travel season.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-q">
+                What does support look like after launch?
+                <span class="faq-toggle">+</span>
+              </button>
+              <div class="faq-a">
+                <p>
+                  You get 24×7 access to a human support team of real engineers,
+                  plus ongoing updates, monitoring and a dedicated account
+                  contact for your business.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <!-- <section class="section" style="padding-top: 3rem; padding-bottom: 4rem">
+      <div class="container">
+        <div class="cta-wrap">
+          <div class="cta-glow1"></div>
+          <div class="cta-glow2"></div>
+          <div class="cta-inner">
+            <div>
+              <h2 class="text-balance">Ready to launch your travel portal?</h2>
+              <p>
+                Start your one-month free trial today. No credit card required —
+                just a conversation about your business.
+              </p>
+            </div>
+            <a href="#contact" class="btn btn-primary cta-btn">Get started →</a>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- ===== Contact ===== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="eyebrow">Let's talk</span>
+            <h2 class="section-title text-balance">
+              Let's talk about your travel business
+            </h2>
+            <p class="section-sub text-pretty">
+              Share your details and our travel technology expert will call you
+              to understand your requirements. Your information is secure and
+              will never be shared.
+            </p>
+            <div class="contact-info-list">
+              <a href="tel:+919900096558" class="contact-info"
+                ><span class="card-icon"
+                  ><svg class="icon">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    /></svg
+                ></span>
+                <div>
+                  <div class="contact-info-label">Call us</div>
+                  <div class="contact-info-value">+91-9900096558</div>
+                </div></a
+              >
+              <a href="mailto:info@valentistech.in" class="contact-info"
+                ><span class="card-icon"
+                  ><svg class="icon">
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                ></span>
+                <div>
+                  <div class="contact-info-label">Email us</div>
+                  <div class="contact-info-value">info@valentistech.in</div>
+                </div></a
+              >
+              <div class="contact-info">
+                <span class="card-icon"
+                  ><svg class="icon">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" /></svg
+                ></span>
+                <div>
+                  <div class="contact-info-label">Visit us</div>
+                  <div class="contact-info-value">
+                    No 27/55 (Old No. 19/A) 10th B Main Road, 5th Block
+                    Jayanagar Bangalore South, Bangalore-560041
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-demo">
+              <div class="contact-demo-title">
+                See our travel platform in action
+              </div>
+              <p>
+                Book a personalized live demo and explore the features that can
+                simplify and grow your travel business.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="form-card">
+              <form id="contactForm">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="name">Full name</label
+                    ><input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="email">Email address</label
+                    ><input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label for="company">Company (optional)</label
+                    ><input
+                      id="company"
+                      name="company"
+                      type="text"
+                      placeholder="Company name"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="interest">I'm interested in</label
+                    ><select id="interest" name="interest">
+                      <option>Travel API Integration</option>
+                      <option>White-Label Portal</option>
+                      <option>Extranet System</option>
+                      <option>Custom Development</option>
+                      <option>Book a Live Demo</option>
+                      <option>General enquiry</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="message">Message</label
+                  ><textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows="4"
+                    placeholder="Tell us about your travel business and what you're looking for..."
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                  Send enquiry →
+                </button>
+                <p class="form-note">
+                  Your information is secure and will never be shared.
+                </p>
+              </form>
+              <div
+                id="formSuccess"
+                style="display: none; text-align: center; padding: 3rem 0"
+              >
+                <div
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    margin: 0 auto;
+                    border-radius: 50%;
+                    background: rgba(12, 123, 231, 0.15);
+                    display: grid;
+                    place-items: center;
+                    color: var(--brand-400);
+                    border: 1px solid rgba(12, 123, 231, 0.3);
+                  "
+                >
+                  <svg class="icon" style="width: 2rem; height: 2rem">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <h3
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: #fff;
+                    margin-top: 1.25rem;
+                  "
+                >
+                  Thank you!
+                </h3>
+                <p
+                  style="
+                    font-size: 0.875rem;
+                    color: var(--ink-300);
+                    margin-top: 0.5rem;
+                    max-width: 24rem;
+                  "
+                >
+                  We've received your enquiry. Our travel technology expert will
+                  reach out to you shortly.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="#home" class="logo">
+              <img
+                src="Group 329.png"
+                alt="Valentis Technologies"
+                style="height: 2.5rem; width: auto"
+              />
+            </a>
+            <p class="footer-desc">
+              AI-enabled travel software, API integrations and white-label
+              portals for travel businesses worldwide.
+            </p>
+            <div class="footer-contact">
+              <a href="tel:+919900096558"
+                ><svg class="icon">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                +91-9900096558</a
+              >
+              <a href="mailto:info@valentistech.in"
+                ><svg class="icon">
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                info@valentistech.in</a
+              >
+              <span style="display: flex; align-items: flex-start; gap: 0.5rem"
+                ><svg class="icon" style="flex-shrink: 0; margin-top: 2px">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                No 27/55 (Old No. 19/A) 10th B Main Road, 5th Block Jayanagar
+                Bangalore South, Bangalore-560041</span
+              >
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#solutions">Solutions</a></li>
+              <li><a href="#modules">Modules</a></li>
+              <li><a href="#why">Why Valentis</a></li>
+              <li><a href="#process">Process</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Solutions</h4>
+            <ul>
+              <li><a href="#solutions">Travel API Integration</a></li>
+              <li><a href="#solutions">White-Label Portal</a></li>
+              <li><a href="#solutions">Extranet System</a></li>
+              <li><a href="#solutions">Custom Development</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Modules</h4>
+            <ul>
+              <li><a href="#modules">B2C Module</a></li>
+              <li><a href="#modules">B2B Module</a></li>
+              <li><a href="#modules">B2B2B Module</a></li>
+              <li><a href="#modules">B2E Module</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © 2026 Valentis Technologies Private Limited. All rights reserved. |
+            UI/UX Design by Dinakar Satya
+          </p>
+          <div style="display: flex; gap: 1.5rem">
+            <a href="#">Privacy Policy</a><a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Header scroll effect
+      const header = document.getElementById("header");
+      window.addEventListener("scroll", function () {
+        header.classList.toggle("scrolled", window.scrollY > 24);
+      });
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileNav = document.getElementById("mobileNav");
+      menuBtn.addEventListener("click", function () {
+        mobileNav.classList.toggle("open");
+      });
+      mobileNav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          mobileNav.classList.remove("open");
+        });
+      });
+
+      // FAQ accordion
+      document.querySelectorAll(".faq-item").forEach(function (item) {
+        const btn = item.querySelector(".faq-q");
+        btn.addEventListener("click", function () {
+          const wasOpen = item.classList.contains("open");
+          document.querySelectorAll(".faq-item").forEach(function (i) {
+            i.classList.remove("open");
+          });
+          if (!wasOpen) item.classList.add("open");
+        });
+      });
+
+      // Contact form
+      const form = document.getElementById("contactForm");
+      const success = document.getElementById("formSuccess");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.style.display = "none";
+        success.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
